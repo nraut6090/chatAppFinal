@@ -30,7 +30,7 @@ const server=app.listen(process.env.PORT,()=>{
 
 const io=socket(server,{
     cors:{
-        origin:["https://deploy-mern-1whq.vercel.app"],
+        origin:["https://chat-app-final-frontend.vercel.app/login"],
         methods:["POST","GET"],
         Credentials:true
     }
