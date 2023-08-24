@@ -5,5 +5,6 @@ router.post("/register",registerController);
 router.post("/login",loginController);
 router.post("/setAvatar/:id", setAvatarController);
 router.get("/allusers/:id", getAllUsers);
+router.get("/", ()=>{console.log("hello")});
 
 module.exports=router;
