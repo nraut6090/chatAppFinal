@@ -18,7 +18,7 @@ mongoose.connect(process.env.MONGO_URL,{
 }).then(()=>{
     console.log("DB Connection successfull");
 }).catch((err)=>{
-    console.log(err.message);
+    console.log(err.message + "hi");
 })
 app.use("/api/auth",userRoutes);
 app.use("/api/messages",messagesRoute);
