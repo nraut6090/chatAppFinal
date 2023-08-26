@@ -9,7 +9,7 @@ import ChatContainer from "../components/ChatContainer";
 import {io} from "socket.io-client";
 function Chat() {
   // useRef() hook is used to store mutable value that does not cause re-render unlike useState 
-  const socket=useRef();
+  const socket=io.connect();
   const navigate = useNavigate();
   const [contacts, setContacts] = useState([]);
   const [currentUser, setCurrentUser] = useState(undefined);
