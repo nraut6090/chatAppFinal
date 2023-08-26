@@ -12,8 +12,11 @@ function ChatContainer({ currentChat, currentUser, socket }) {
   useEffect(() => {
     if (currentChat) {
       const getMessOfSender = async () => {
+        const data = await JSON.parse(
+          localStorage.getItem("chat-app-user")
+        );
         const response = await axios.post(getAllMessagesRoute, {
-          from: currentUser._id,
+          from: data._id,
           to: currentChat._id,
         });
         setMessages(response.data);

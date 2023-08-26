@@ -1,18 +1,23 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import logo from "../assets/logo.svg";
-function Contacts({ contacts, currentUser,changeChat }) {
+function Contacts({ contacts, currentUser, changeChat }) {
   const [currentUserName, setCurrentUserName] = useState(undefined);
   const [currentUserImage, setCurrentUserImage] = useState(undefined);
   const [currentSelected, setCurrentSelected] = useState(undefined);
 
   useEffect(() => {
-    // console.log(contacts)
-    if (currentUser) {
-      setCurrentUserName(currentUser.username);
-      setCurrentUserImage(currentUser.avatarImage);
+    const method = async () => {
+      const data = await JSON.parse(
+        localStorage.getItem("chat-app-user")
+      );
+      
+        setCurrentUserName(data.username);
+        setCurrentUserImage(data.avatarImage);
+      
     }
-  }, [currentUser]);
+    method();
+  }, []);
   const changeCurrentChat = (index, contact) => {
     setCurrentSelected(index);
     changeChat(contact);
@@ -27,14 +32,14 @@ function Contacts({ contacts, currentUser,changeChat }) {
           </div>
           {/* All contacts */}
           <div className="contacts">
-          {contacts.map((contact, index) => {
+            {contacts.map((contact, index) => {
               return (
                 <div
                   className={`contact ${
                     index === currentSelected ? "selected" : ""
                   }`}
                   key={index}
-                  onClick={()=>changeCurrentChat(index,contact)}
+                  onClick={() => changeCurrentChat(index, contact)}
                 >
                   <div className="avatar">
                     <img
@@ -48,7 +53,6 @@ function Contacts({ contacts, currentUser,changeChat }) {
                 </div>
               );
             })}
-            
           </div>
           {/* Current User */}
           <div className="current-user">
@@ -62,7 +66,6 @@ function Contacts({ contacts, currentUser,changeChat }) {
               <h2>{currentUserName}</h2>
             </div>
           </div>
-
         </Container>
       )}
     </>
@@ -70,7 +73,7 @@ function Contacts({ contacts, currentUser,changeChat }) {
 }
 
 const Container = styled.div`
-display: grid;
+  display: grid;
   grid-template-rows: 10% 75% 15%;
   overflow: hidden;
   background-color: #080420;
