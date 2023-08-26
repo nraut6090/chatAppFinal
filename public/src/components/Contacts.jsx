@@ -12,7 +12,7 @@ function Contacts({ contacts, currentUser, changeChat }) {
         localStorage.getItem("chat-app-user")
       );
       
-        setCurrentUserName(data.username);
+        setCurrentUserName(currentUser);
         setCurrentUserImage(data.avatarImage);
       
     }
