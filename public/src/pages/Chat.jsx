@@ -14,14 +14,14 @@ function Chat() {
   const [contacts, setContacts] = useState([]);
   const [currentUser, setCurrentUser] = useState(undefined);
   const [currentChat, setCurrentChat] = useState(undefined);
-  // const [isLoaded,setIsLoaded]=useState(false);
+  const [isLoaded,setIsLoaded]=useState(false);
   useEffect(() => {
     const setUserToIdentify = async () => {
       if (!localStorage.getItem("chat-app-user")) {
         navigate("/login");
       } else {
         setCurrentUser(await JSON.parse(localStorage.getItem("chat-app-user")));
-        // setIsLoaded(true);
+        setIsLoaded(true);
       }
     };
     setUserToIdentify();
@@ -56,7 +56,7 @@ function Chat() {
   };
   return (
     <>{
-      
+      isLoaded &&(
         <Container>
       <div className="container">
         <Contacts
@@ -70,7 +70,7 @@ function Chat() {
         }
       </div>
     </Container>
-      
+      )
     }</>
     
   );
